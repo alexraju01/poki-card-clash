@@ -1,4 +1,4 @@
-import { initPokemonDeck } from "./pokemonList.js";
+import { initPokiDeck } from "./pokiList.js";
 
 console.log("hello world");
-initPokemonDeck();
+initPokiDeck();
