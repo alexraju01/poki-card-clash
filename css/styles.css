@@ -1,0 +1,52 @@
+/* Universal box-sizing to make layout more predictable */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* Resetting margin and padding to remove scroll bars */
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%; /* Ensure body takes up the full viewport height */
+	font-family: Arial, sans-serif; /* Optional: Set a default font */
+}
+
+/* Ensuring the body takes the full viewport height */
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	align-items: center;
+	justify-content: center; /* Centering content vertically */
+	background-color: #f0f0f0; /* Light background color */
+}
+
+/* Styling for the main header */
+header h1 {
+	margin-bottom: 20px;
+	text-align: center;
+	color: #333;
+}
+
+/* Styling the anchor link to look like a button */
+.btn-link {
+	padding: 10px 20px;
+	background-color: #4caf50;
+	color: white;
+	text-decoration: none;
+	border-radius: 5px;
+	display: inline-block;
+	font-size: 16px;
+}
+
+.btn-link:hover {
+	background-color: #45a049;
+}
+
+/* Prevent scrollbars by containing large elements */
+main {
+	text-align: center;
+}
