@@ -1,21 +1,24 @@
-/* $colors: (
-	bug: #92b242,
-	dark: #5a526a,
-	dragon: #6a68cf,
-	electric: #e2e242,
-	fairy: #e242bc,
-	fighting: #e27242,
-	fire: #e24242,
-	flying: #9090e2,
-	ghost: #6768cf,
-	grass: #2e9868,
-	ground: #d2a758,
-	ice: #68cfcf,
-	normal: #a8a68a,
-	poison: #9c50b7,
-	psychic: #e24292,
-	rock: #a8a258,
-	steel: #a8aacb,
-	water: #4a90e2,
-	active-tab-color: #ffffff
-); */
+:root {
+	--color-grass: #48d0b0; /* Vibrant greenish teal */
+	--color-fire: #fb6c6c; /* Bright red-orange */
+	--color-water: #76bdfe; /* Bright sky blue */
+	--color-electric: #ffd86f; /* Bright yellow */
+	--color-psychic: #ff73a5; /* Bright pink */
+	--color-ice: #8ce8f9; /* Bright icy blue */
+	--color-fighting: #ff5a5a; /* Bright, strong red */
+	--color-poison: #c063e4; /* Bright purple */
+	--color-ground: #d8b75a; /* Bright sandy yellow */
+	--color-flying: #a5a3ff; /* Soft light purple */
+	--color-bug: #b1d475; /* Bright lime green */
+	--color-rock: #c9a44d; /* Bright golden brown */
+	--color-ghost: #8d7fe9; /* Bright ghostly purple */
+	--color-dragon: #8a76ff; /* Vivid violet */
+	--color-dark: #8d6b53; /* Deep warm brown */
+	--color-steel: #a8a8d0; /* Bright silver */
+	--color-fairy: #fcb9d1; /* Bright pastel pink */
+	--color-normal: #c6c6a7; /* Soft beige-gray */
+}
+
+.type {
+	background-color: var(--color-default);
+}

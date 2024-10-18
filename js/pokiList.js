@@ -24,14 +24,13 @@ const renderCards = (pokis) => {
 	const deckContainer = document.getElementById("poki-list");
 	if (!deckContainer) return;
 
-	pokis.slice(0, 5).forEach(async ({ id, name }) => {
+	pokis.slice(0, 26).forEach(async ({ id, name }) => {
 		const template = document.getElementById("poki-card-template").content;
 		const pokiCard = document.importNode(template, true);
 
 		const types = await fetchPokiType(name);
 		console.log(types);
 		// const typeText = types.join(" ");
-
 		// Populate the card with pokemon data
 		pokiCard.querySelector(".poki-number").textContent = id;
 		pokiCard.querySelector(".poki-name").textContent = name;
@@ -45,7 +44,54 @@ const renderCards = (pokis) => {
 			typeSpan.classList.add("poki-type"); // Optionally, add a class for styling
 			typesContainer.appendChild(typeSpan);
 		});
+		// console.log(types[0]);
+		// console.log(pokiCard);
+		renderCardColour(pokiCard, types[0]);
 		// Append the card to the deck
 		deckContainer.appendChild(pokiCard);
 	});
+};
+
+const renderCardColour = (pokiCard, type) => {
+	// Select the actual card element inside the pokiCard (DocumentFragment)
+	const cardElement = pokiCard.querySelector(".poki-card");
+
+	// Ensure cardElement exists before trying to add the class
+	if (!cardElement) {
+		console.error("Card element not found in the template!");
+		return;
+	}
+
+	// Dynamically apply the background color using CSS variables
+	const typeColors = {
+		bug: "--color-bug",
+		dark: "--color-dark",
+		dragon: "--color-dragon",
+		electric: "--color-electric",
+		fairy: "--color-fairy",
+		fighting: "--color-fighting",
+		fire: "--color-fire",
+		flying: "--color-flying",
+		ghost: "--color-ghost",
+		grass: "--color-grass",
+		ground: "--color-ground",
+		ice: "--color-ice",
+		normal: "--color-normal",
+		poison: "--color-poison",
+		psychic: "--color-psychic",
+		rock: "--color-rock",
+		steel: "--color-steel",
+		water: "--color-water",
+	};
+
+	// Check if the type exists in the typeColors map
+	if (typeColors[type]) {
+		// console.log(typeColors[type]);
+		// Apply the corresponding CSS variable as the background color
+		cardElement.style.backgroundColor = getComputedStyle(
+			document.documentElement
+		).getPropertyValue(typeColors[type]);
+	} else {
+		console.error(`Type "${type}" not found in the color mapping.`);
+	}
 };
