@@ -11,18 +11,23 @@
 
 html {
 	font-size: 62.5%;
-	color: white;
+	color: black;
 }
 
 body {
 	background-color: white;
 }
 
+h1 {
+	text-align: center;
+	padding: 3rem 0;
+}
+
 section {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
 	gap: 1.5rem;
-	padding: 1.3rem;
+	padding: 0 1.3rem;
 	font-size: 2rem;
 	image-rendering: pixelated;
 }
@@ -58,6 +63,6 @@ section {
 	image-rendering: pixelated;
 }
 .poki-name {
-	font-size: 1rem;
+	font-size: 1.5rem;
 	color: white;
 }
