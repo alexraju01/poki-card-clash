@@ -1,0 +1,44 @@
+:root {
+	--color-grass: #48d0b0; /* Vibrant greenish teal */
+	--color-fire: #fb6c6c; /* Bright red-orange */
+	--color-water: #76bdfe; /* Bright sky blue */
+	--color-electric: #ffd86f; /* Bright yellow */
+	--color-psychic: #ff73a5; /* Bright pink */
+	--color-ice: #8ce8f9; /* Bright icy blue */
+	--color-fighting: #ff5a5a; /* Bright, strong red */
+	--color-poison: #c063e4; /* Bright purple */
+	--color-ground: #d8b75a; /* Bright sandy yellow */
+	--color-flying: #a5a3ff; /* Soft light purple */
+	--color-bug: #b1d475; /* Bright lime green */
+	--color-rock: #c9a44d; /* Bright golden brown */
+	--color-ghost: #8d7fe9; /* Bright ghostly purple */
+	--color-dragon: #8a76ff; /* Vivid violet */
+	--color-dark: #8d6b53; /* Deep warm brown */
+	--color-steel: #a8a8d0; /* Bright silver */
+	--color-fairy: #fcb9d1; /* Bright pastel pink */
+	--color-normal: #c6c6a7; /* Soft beige-gray */
+
+	/* Vollo Button Colors */
+	--vollo-button-grass: #61e1ca; /* Updated Grass */
+	--vollo-button-fire: #f88e8d; /* Updated Fire */
+	--vollo-button-water: #90d2fe; /* Softer blue for Water */
+	--vollo-button-electric: #ffe681; /* Soft yellow for Electric */
+	--vollo-button-psychic: #ff9db9; /* Light pink for Psychic */
+	--vollo-button-ice: #a0efff; /* Soft cyan for Ice */
+	--vollo-button-fighting: #ff7a7a; /* Soft red for Fighting */
+	--vollo-button-poison: #ca82e3; /* Soft purple for Poison */
+	--vollo-button-ground: #e3c175; /* Soft tan/brown for Ground */
+	--vollo-button-flying: #b0afff; /* Soft lavender for Flying */
+	--vollo-button-bug: #b6e688; /* Soft green for Bug */
+	--vollo-button-rock: #d1b26b; /* Soft yellow-brown for Rock */
+	--vollo-button-ghost: #a794f9; /* Soft purple for Ghost */
+	--vollo-button-dragon: #a88aff; /* Soft purple-blue for Dragon */
+	--vollo-button-dark: #a57d65; /* Soft brown for Dark */
+	--vollo-button-steel: #c0c0e1; /* Soft metallic grey for Steel */
+	--vollo-button-fairy: #ffcce1; /* Soft pastel pink for Fairy */
+	--vollo-button-normal: #d8d8b0; /* Soft beige for Normal */
+}
+
+.type {
+	background-color: var(--color-default);
+}
