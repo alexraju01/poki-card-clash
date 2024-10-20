@@ -1,11 +1,18 @@
+// pokiList.js
+import { capitalize } from "../lib/capitalize.js";
 import fetchData from "../lib/fetchData.js";
 import { pokiCardTemplate } from "../lib/templates/cardTemplate.js";
 
 export const fetchAllPokemon = async () => {
+	const preloaderContainer = document.getElementById("preloader-container");
+
 	try {
-		// Fetch Pokémon data
+		// Show preloader while fetching data
+		preloaderContainer.style.display = "flex";
+
+		// Fetch all Pokémon data and limit to 26 Pokémon
 		const pokiList = await fetchData("pokemon");
-		console.log("Fetched pokiList:", pokiList);
+		// pokiList = pokiList.slice(0, 26);
 
 		// Add the template to the DOM
 		const templateContainer = document.createElement("div");
@@ -16,9 +23,11 @@ export const fetchAllPokemon = async () => {
 		await renderCards(pokiList);
 
 		// Hide the preloader after everything is rendered
+		preloaderContainer.style.display = "none";
 		console.log("All images and cards are loaded, preloader hidden.");
 	} catch (error) {
 		console.error("Error during Pokémon list initialization:", error);
+		preloaderContainer.style.display = "none"; // Hide preloader even in case of an error
 	}
 };
 
@@ -34,49 +43,29 @@ const renderCards = (pokis) => {
 	if (!deckContainer) return;
 
 	// Create an array of promises that resolve when each card and image is fully loaded
-	pokis.slice(0, 26).map(async ({ id, name }) => {
+	pokis.map(async ({ id, name }) => {
 		const template = document.getElementById("poki-card-template").content;
 		const pokiCard = document.importNode(template, true);
 		console.log("Rendering card for:", id, name);
 
 		// Fetch Pokémon types
-		const types = await fetchPokiType(name);
-		console.log("Fetched types for", name, ":", types);
 
 		// Populate the card with Pokémon data
 		pokiCard.querySelector(".poki-number").textContent = id;
-		pokiCard.querySelector(".poki-name").textContent = name;
+		pokiCard.querySelector(".poki-name").textContent = capitalize(name);
 		const imageElement = pokiCard.querySelector(".poki-image");
 		imageElement.src = `https://raw.githubusercontent.com/getmimo/things-api/main/files/pokedex/sprites/master/sprites/pokemon/${id}.png`;
 
-		// Populate the types
-		const typesContainer = pokiCard.querySelector(".poki-types");
-		types.forEach((type) => {
-			const typeSpan = document.createElement("span");
-			typeSpan.textContent = type;
-			typeSpan.classList.add("poki-type");
-			typesContainer.appendChild(typeSpan);
-		});
-
 		// Update the card color based on Pokémon type
-		renderCardColour(pokiCard, types[0]);
+		renderCardColour(pokiCard);
 
 		// Append the card to the deck
 		deckContainer.appendChild(pokiCard);
 	});
-
-	// Wait for all cards (including images and content) to finish loading
-	return Promise.all(cardLoadPromises)
-		.then(() => {
-			console.log("All cards and images have been fully loaded.");
-		})
-		.catch((error) => {
-			console.error("An error occurred while loading cards or images:", error);
-		});
 };
 
 // Renders card color based on Pokémon type
-const renderCardColour = (pokiCard, type) => {
+const renderCardColour = (pokiCard) => {
 	const cardElement = pokiCard.querySelector(".poki-card");
 	if (!cardElement) {
 		console.error("Card element not found in the template!");
@@ -103,12 +92,4 @@ const renderCardColour = (pokiCard, type) => {
 		steel: "--color-steel",
 		water: "--color-water",
 	};
-
-	if (typeColors[type]) {
-		cardElement.style.backgroundColor = getComputedStyle(
-			document.documentElement
-		).getPropertyValue(typeColors[type]);
-	} else {
-		console.error(`Type "${type}" not found in the color mapping.`);
-	}
 };
