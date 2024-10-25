@@ -1,5 +1,4 @@
-html,
-body {
+* {
 	margin: 0;
 	padding: 0;
 	height: 100%;
@@ -48,3 +47,16 @@ main {
 /* Preloader styles */
 
 /* Preloader styles */
+/* Deck container styling */
+.pokemon-deck {
+	margin-top: 20px;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	list-style: none;
+}
+
+/* Styling for selected card border */
+.selected-card-border {
+	border: 2px solid #ffcb05;
+}

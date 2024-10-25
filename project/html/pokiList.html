@@ -17,13 +17,30 @@
 		</div>
 
 		<main>
-			<h1>Poki card catelog</h1>
-			<section id="poki-list">
-				<!-- Pokémon list will be dynamically populated here -->
+			<h1>Poki Card Catalog</h1>
+			<div class="searchContainer">
+				<input
+					autocomplete="off"
+					type="search"
+					id="search"
+					placeholder="Search Poki"
+					data-search
+				/>
+			</div>
+
+			<!-- New section for custom deck -->
+			<section id="custom-deck">
+				<h2>Your Deck</h2>
+				<div id="deck" class="deck"></div>
+			</section>
+			<section>
+				<ul id="poki-list" class="pokemon-list">
+					<!-- Pokémon list items will be dynamically populated here -->
+				</ul>
 			</section>
 		</main>
 
 		<!-- Specify that the script is a module -->
-		<script type="module" src="../js/main.js"></script>
+		<script type="module" src="../js/app.js"></script>
 	</body>
 </html>

@@ -24,17 +24,10 @@ export const fetchAllPokemon = async () => {
 
 		// Hide the preloader after everything is rendered
 		preloaderContainer.style.display = "none";
-		console.log("All images and cards are loaded, preloader hidden.");
 	} catch (error) {
 		console.error("Error during Pokémon list initialization:", error);
 		preloaderContainer.style.display = "none"; // Hide preloader even in case of an error
 	}
-};
-
-// Fetches Pokémon type data
-const fetchPokiType = async (name) => {
-	const pokiType = await fetchData(`pokemon/${name}`);
-	return pokiType.types.map((type) => type.type.name);
 };
 
 // Renders Pokémon cards and waits for all images and card content to load
@@ -46,9 +39,6 @@ const renderCards = (pokis) => {
 	pokis.map(async ({ id, name }) => {
 		const template = document.getElementById("poki-card-template").content;
 		const pokiCard = document.importNode(template, true);
-		console.log("Rendering card for:", id, name);
-
-		// Fetch Pokémon types
 
 		// Populate the card with Pokémon data
 		pokiCard.querySelector(".poki-number").textContent = id;
@@ -56,8 +46,16 @@ const renderCards = (pokis) => {
 		const imageElement = pokiCard.querySelector(".poki-image");
 		imageElement.src = `https://raw.githubusercontent.com/getmimo/things-api/main/files/pokedex/sprites/master/sprites/pokemon/${id}.png`;
 
-		// Update the card color based on Pokémon type
-		renderCardColour(pokiCard);
+		// Add click event listener to select the card
+		const cardElement = pokiCard.querySelector(".poki-card");
+		cardElement.addEventListener("click", () => {
+			if (cardElement.classList.contains("selected")) {
+				cardElement.classList.remove("selected");
+			} else {
+				cardElement.classList.add("selected");
+				console.log("added");
+			}
+		});
 
 		// Append the card to the deck
 		deckContainer.appendChild(pokiCard);
@@ -65,31 +63,31 @@ const renderCards = (pokis) => {
 };
 
 // Renders card color based on Pokémon type
-const renderCardColour = (pokiCard) => {
-	const cardElement = pokiCard.querySelector(".poki-card");
-	if (!cardElement) {
-		console.error("Card element not found in the template!");
-		return;
-	}
+// const renderCardColour = (pokiCard) => {
+// 	const cardElement = pokiCard.querySelector(".poki-card");
+// 	if (!cardElement) {
+// 		console.error("Card element not found in the template!");
+// 		return;
+// 	}
 
-	const typeColors = {
-		bug: "--color-bug",
-		dark: "--color-dark",
-		dragon: "--color-dragon",
-		electric: "--color-electric",
-		fairy: "--color-fairy",
-		fighting: "--color-fighting",
-		fire: "--color-fire",
-		flying: "--color-flying",
-		ghost: "--color-ghost",
-		grass: "--color-grass",
-		ground: "--color-ground",
-		ice: "--color-ice",
-		normal: "--color-normal",
-		poison: "--color-poison",
-		psychic: "--color-psychic",
-		rock: "--color-rock",
-		steel: "--color-steel",
-		water: "--color-water",
-	};
-};
+// 	const typeColors = {
+// 		bug: "--color-bug",
+// 		dark: "--color-dark",
+// 		dragon: "--color-dragon",
+// 		electric: "--color-electric",
+// 		fairy: "--color-fairy",
+// 		fighting: "--color-fighting",
+// 		fire: "--color-fire",
+// 		flying: "--color-flying",
+// 		ghost: "--color-ghost",
+// 		grass: "--color-grass",
+// 		ground: "--color-ground",
+// 		ice: "--color-ice",
+// 		normal: "--color-normal",
+// 		poison: "--color-poison",
+// 		psychic: "--color-psychic",
+// 		rock: "--color-rock",
+// 		steel: "--color-steel",
+// 		water: "--color-water",
+// 	};
+// };
